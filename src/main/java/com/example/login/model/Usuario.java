@@ -8,7 +8,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -34,4 +42,12 @@ public class Usuario {
 
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean activo = true;
+
+    public Usuario(String nombre, String apellido, String email, String password, Role rol) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.password = password;
+        this.rol = rol;
+    }
 }
