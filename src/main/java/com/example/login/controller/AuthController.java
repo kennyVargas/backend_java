@@ -3,11 +3,10 @@ package com.example.login.controller;
 import com.example.login.dto.LoginRequestDTO;
 import com.example.login.model.Usuario;
 import com.example.login.services.AuthService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Map;
 
 @RestController
@@ -16,7 +15,7 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequestDTO request) {
         try {
             Usuario user = authService.authenticate(request.getEmail(), request.getPassword());
@@ -31,7 +30,12 @@ public class AuthController {
                     "error", "error en login"
             ));
         }
+    }
 
+    @GetMapping("/v1")
+    public String saludo() {
+        System.out.println("hola");
+        return "hola perro";
     }
 
 }
